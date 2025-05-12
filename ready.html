@@ -57,6 +57,7 @@
             text-align: center;
             position: relative;
             z-index: 2;
+            opacity: 1;
         }
         
         .logo-container {
@@ -66,6 +67,9 @@
             padding: 20px;
             position: relative;
             perspective: 1000px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
         }
         
         .logo-trapeze {
@@ -117,6 +121,9 @@
             color: var(--gold-light);
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
             line-height: 1.2;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out 0.3s forwards;
         }
         
         .subtitle {
@@ -126,6 +133,9 @@
             line-height: 1.6;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
             padding: 0 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out 0.6s forwards;
         }
         
         .download-section {
@@ -137,6 +147,9 @@
             margin-bottom: 30px;
             border: 2px solid var(--gold-light);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out 0.9s forwards;
         }
         
         .season-card {
@@ -146,7 +159,15 @@
             margin-bottom: 20px;
             border-left: 5px solid var(--gold-light);
             transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
         }
+        
+        .season-card:nth-child(1) { animation: fadeInUp 0.8s ease-out 1.2s forwards; }
+        .season-card:nth-child(2) { animation: fadeInUp 0.8s ease-out 1.5s forwards; }
+        .season-card:nth-child(3) { animation: fadeInUp 0.8s ease-out 1.8s forwards; }
+        .season-card:nth-child(4) { animation: fadeInUp 0.8s ease-out 2.1s forwards; }
+        .season-card:nth-child(5) { animation: fadeInUp 0.8s ease-out 2.4s forwards; }
         
         .season-card:hover {
             transform: translateY(-5px);
@@ -199,9 +220,26 @@
             width: 100%;
             text-align: center;
             font-size: 0.8rem;
-            opacity: 0.8;
+            opacity: 0;
             padding: 15px;
             background: rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.8s ease-out 2.7s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 0.8; }
         }
         
         /* Animations */
@@ -217,6 +255,8 @@
             border-radius: 50%;
             pointer-events: none;
             z-index: 1;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 3s forwards, float 5s ease-in-out infinite;
         }
         
         /* Responsive spécifique pour Android */
@@ -281,7 +321,7 @@
         
         <h1>TÉLÉCHARGEMENTS</h1>
         <p class="subtitle">
-            Accédez à tous les épisodes de la série culte Prison Break en qualité HD
+            Accédez gratuitement à tous les épisodes de la série culte Prison Break en qualité HD
         </p>
         
         <div class="download-section">
@@ -362,7 +402,7 @@
                 // Animation
                 const duration = Math.random() * 10 + 5;
                 const delay = Math.random() * 5;
-                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                particle.style.animation = `float ${duration}s ease-in-out ${delay + 3}s infinite`;
                 
                 document.body.appendChild(particle);
             }
@@ -380,8 +420,10 @@
         `;
         document.head.appendChild(style);
         
-        // Lancement au chargement
-        document.addEventListener('DOMContentLoaded', createParticles);
+        // Lancement au chargement avec un léger délai
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(createParticles, 3000);
+        });
         
         // Réinitialisation au redimensionnement
         window.addEventListener('resize', function() {
