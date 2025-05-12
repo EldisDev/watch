@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prison Break - Accueil</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+        
+        :root {
+            --gold-light: #FFD700;
+            --gold-dark: #FD9E02;
+            --blue-dark: #1a2a6c;
+            --red-dark: #b21f1f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            background: 
+                linear-gradient(135deg, 
+                    rgba(26, 42, 108, 0.7), 
+                    rgba(178, 31, 31, 0.7),
+                    rgba(253, 187, 45, 0.6)),
+                url('https://image.tmdb.org/t/p/original/5E1BhkCgjLBlqx557Z5yzcN0i88.jpg') no-repeat;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+            animation: panBackground 30s linear infinite;
+        }
+        
+        @keyframes panBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .logo-trapeze {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.7));
+            animation: 
+                pulse 2s infinite alternate,
+                trapezeTilt 8s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+        
+        @keyframes trapezeTilt {
+            0%, 100% { transform: rotateX(0deg) rotateY(0deg) scale(1); }
+            25% { transform: rotateX(5deg) rotateY(-3deg) scale(1.02); }
+            50% { transform: rotateX(0deg) rotateY(5deg) scale(1.01); }
+            75% { transform: rotateX(-5deg) rotateY(3deg) scale(1.02); }
+        }
+        
+        .logo-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 2.8rem;
+            color: var(--blue-dark);
+            text-shadow: 
+                2px 2px 0 var(--gold-light),
+                0 0 10px rgba(255, 215, 0, 0.5);
+            line-height: 1;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes textGlow {
+            0% { text-shadow: 2px 2px 0 var(--gold-light), 0 0 10px rgba(255, 215, 0, 0.5); }
+            100% { text-shadow: 3px 3px 5px var(--gold-light), 0 0 20px rgba(255, 215, 0, 0.8); }
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold-light);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 40px;
+            max-width: 800px;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            padding: 0 20px;
+        }
+        
+        .btn-login {
+            background: linear-gradient(45deg, var(--gold-dark), var(--gold-light));
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .btn-login:active {
+            transform: translateY(1px);
+        }
+        
+        .season-badge {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: 700;
+            color: var(--gold-light);
+            border: 2px solid var(--gold-light);
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: badgePulse 2s infinite alternate;
+        }
+        
+        @keyframes badgePulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 rgba(253, 158, 2, 0); }
+            100% { transform: scale(1.05); box-shadow: 0 0 15px rgba(253, 158, 2, 0.6); }
+        }
+        
+        footer {
+            width: 100%;
+            text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.8;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.7)); }
+            100% { transform: scale(1.03); filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.9)); }
+        }
+        
+        /* Effets de particules */
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 215, 0, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Responsive spécifique pour Android */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .logo-container {
+                margin-bottom: 20px;
+                padding: 10px;
+            }
+            
+            .logo-text {
+                font-size: 2rem;
+            }
+            
+            .btn-login {
+                padding: 12px 30px;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                letter-spacing: 1px;
+            }
+            
+            .subtitle {
+                margin-bottom: 30px;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            body {
+                animation: panBackground 40s linear infinite;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="season-badge">SAISONS 1 À 5 DISPONIBLES</div>
+        
+        <div class="logo-container">
+            <!-- Logo SVG avec texte positionné absolument -->
+            <svg class="logo-trapeze" viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#FFD700" d="M50,30 L450,30 L430,120 L70,120 Z" stroke="#000" stroke-width="2"/>
+            </svg>
+            <div class="logo-text">PRISON BREAK</div>
+        </div>
+        
+        <h1>L'ÉVASION ULTIME</h1>
+        <p class="subtitle">
+            Accédez à l'intégralité de la série culte pour découvrir les plans secrets de Michael Scofield. Connectez-vous à Facebook pour continuer
+        </p>
+        
+        <button class="btn-login" onclick="window.location.href='connexion.html'">
+            SE CONNECTER
+        </button>
+    </div>
+    
+    <footer>
+        © 2025 Prison Break HD | Tous droits réservés
+    </footer>
+
+    <script>
+        // Création des particules dorées dynamiques
+        function createParticles() {
+            const particleCount = window.innerWidth < 768 ? 15 : 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Position aléatoire
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                
+                // Taille aléatoire
+                const size = Math.random() * 5 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Animation
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * 5;
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                document.body.appendChild(particle);
+            }
+        }
+        
+        // Animation de flottement
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0) translateX(0); opacity: 0.6; }
+                25% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
+                50% { transform: translateY(0) translateX(20px); opacity: 1; }
+                75% { transform: translateY(-10px) translateX(-10px); opacity: 0.8; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Lancement au chargement
+        document.addEventListener('DOMContentLoaded', createParticles);
+        
+        // Réinitialisation au redimensionnement
+        window.addEventListener('resize', function() {
+            document.querySelectorAll('.particle').forEach(p => p.remove());
+            createParticles();
+        });
+    </script>
+</body>
+</html>
